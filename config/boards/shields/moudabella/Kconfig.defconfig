@@ -1,0 +1,6 @@
+if SHIELD_MOUDABELLA
+
+config ZMK_KEYBOARD_NAME
+	default "moudabella"
+
+endif
