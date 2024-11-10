@@ -5,12 +5,13 @@
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <physical_layouts.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
 	chosen {
 		zmk,kscan = &kscan0;
-		zmk,matrix-transform = &default_transform;
+		// zmk,matrix-transform = &default_transform;
 	};
 
 	default_transform: keymap_transform_0 {
@@ -41,6 +42,40 @@
 		  , <&gpio0 28 GPIO_ACTIVE_HIGH>
 			;
 	};
+
+	moudabella_col_layout: moudabella_col_layout {
+			compatible = "zmk,physical-layout";
+			display-name = "moudabella";
+
+			transform = <&default_transform>;
+			kscan = <&kscan0>;
+
+			keys  //                     w   h    x    y     rot    rx    ry
+					= <&key_physical_attrs 100 100    0    0       0     0     0>
+					, <&key_physical_attrs 100 100  100   12       0     0     0>
+					, <&key_physical_attrs 100 100  200   25       0     0     0>
+					, <&key_physical_attrs 100 100  300    0       0     0     0>
+					, <&key_physical_attrs 100 100  400   12       0     0     0>
+					, <&key_physical_attrs 100 100  700   24       0     0     0>
+					, <&key_physical_attrs 100 100  800    0       0     0     0>
+					, <&key_physical_attrs 100 100  900   12       0     0     0>
+					, <&key_physical_attrs 100 100 1000   24       0     0     0>
+			;
+	};
+
+	moudabella_position_map {
+			compatible = "zmk,physical-layout-position-map";
+			complete;
+			ten {
+					physical-layout = <&moudabella_col_layout>;
+					positions
+							= < 0  1  2  >
+							, < 3  4  5  >
+							, < 6  7  8  >
+					;
+			};
+	};
+
 };
 
 &pinctrl {
