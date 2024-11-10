@@ -18,9 +18,9 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/input_transform.h>
 
-#define ENC_SCL_U MOVE_Y(20)
-#define ENC_SCL_D MOVE_Y(-20)
-#define ENC_SCL_TAP_MS 65
+#define ENC_SCL_U MOVE_Y(33)
+#define ENC_SCL_D MOVE_Y(-33)
+#define ENC_SCL_TAP_MS 66
 
 #define DEF 0
 #define LHB 1
@@ -96,9 +96,10 @@
                 };
         };
 
-        //   0   3   6
-        //     1   2
-        //   4       5
+        //*** Top project of key positins ***
+        //   0   3   6   <-- physical layout of L/M/R mouse button key
+        //     1   2     <-- shoulder twins key
+        //   4       5   <-- the side buttons
         //   7       8
         combos {
                 compatible = "zmk,combos";
