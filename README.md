@@ -1,6 +1,6 @@
 # ZMK Config for moudabella
 
-This is the firmeare config file for [moudabella](https://github.com/badjeff/moudabella), an open source bluetooth mouse 🐭 for CAD 🐱.
+This is the ZMK firmware config repository for [moudabella](https://github.com/badjeff/moudabella), an open source bluetooth mouse 🐭 for CAD 🐱.
 
 <img src="./imgs/c2.jpeg" width="400">
 
