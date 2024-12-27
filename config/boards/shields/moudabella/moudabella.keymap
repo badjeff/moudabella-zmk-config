@@ -108,7 +108,7 @@
                 };
 
                 tog_cfg_layer {
-                        timeout-ms = <80>;
+                        timeout-ms = <120>;
                         key-positions = <1 2>;
                         bindings = <&tog CFG>;
                         layers = < DEF LHB CFG PCE MSC >;
