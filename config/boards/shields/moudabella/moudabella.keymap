@@ -19,9 +19,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 #include <input/processors/report_rate_limit.dtsi>
-&zip_report_rate_limit {
-	report-ms = <12>;
-};
 
 #define DEF 0
 #define LHB 1
@@ -61,7 +58,7 @@
                 compatible = "zmk,input-listener";
                 device = <&pd0>;
                 input-processors = <&xy_transf (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>
-                                 , <&zip_report_rate_limit>
+                                 , <&zip_report_rate_limit 12>
                                  ;
                 precise {
                         layers = <PCE>;
