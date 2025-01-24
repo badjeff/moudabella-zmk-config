@@ -58,7 +58,7 @@
                 compatible = "zmk,input-listener";
                 device = <&pd0>;
                 input-processors = <&xy_transf (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>
-                                 , <&zip_report_rate_limit 15>
+                                 , <&zip_report_rate_limit 16>
                                  ;
                 precise {
                         layers = <PCE>;
