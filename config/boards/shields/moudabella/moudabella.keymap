@@ -22,9 +22,7 @@
 
 #define DEF 0
 #define LHB 1
-#define PCE 2
-#define MSC 3
-#define CFG 4
+#define MSC 2
 
 / {
         xy_transf: xy_transf {
@@ -60,21 +58,17 @@
                 input-processors = <&xy_transf (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>
                                  , <&zip_report_rate_limit 16>
                                  ;
-                precise {
-                        layers = <PCE>;
-                        process-next;
-                        input-processors = <&xy_scaler 2 3>;
-                };
                 scroll {
                         layers = <MSC>;
                         process-next;
                         input-processors = <&xy_scaler 1 40>, <&x_scaler 0 1>
+                                         , <&xy_transf (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>
                                          , <&to_wheel>;
                 };
         };
 
         behaviors {
-                hmkp_tg: hold_mouse_key_press_tap_toggle {
+                mkg: hold_mouse_key_press_tap_toggle {
                         compatible = "zmk,behavior-hold-tap"; #binding-cells = <2>;
                         tapping-term-ms = <200>; quick-tap-ms = <200>;
                         flavor = "tap-preferred"; bindings = <&mkp>, <&tog>;
@@ -96,26 +90,18 @@
                 };
         };
 
-        //*** Top project of key positins ***
+        //*** Top view projection of key position ***
         //   0   3   6   <-- physical layout of L/M/R mouse button key
         //     1   2     <-- shoulder twins key
         //   4       5   <-- the side buttons
         //   7       8
         combos {
                 compatible = "zmk,combos";
-
-                mo_precise_layer {
-                        timeout-ms = <80>;
-                        key-positions = <4 5>;
-                        bindings = <&mo PCE>;
-                        layers = < DEF LHB CFG PCE MSC >;
-                };
-
-                tog_cfg_layer {
+                mou_swap {
                         timeout-ms = <120>;
-                        key-positions = <1 2>;
-                        bindings = <&tog CFG>;
-                        layers = < DEF LHB CFG PCE MSC >;
+                        key-positions = <7 8>;
+                        bindings = <&tog LHB>;
+                        layers = < DEF LHB MSC >;
                 };
         };
 
@@ -124,45 +110,27 @@
                 default_layer {
                         display-name = "Default";
                         bindings = <
-   &mkp LCLK   &mo MSC             &hmkp_tg MCLK MSC
-   &mkp MCLK   &mkp MB5            &mkp MB5
-   &mkp RCLK   &mkp MB4            &mkp MB4
+   &mkp LCLK       &mo MSC         &mkg MCLK MSC
+   &mkp MCLK       &mkp MB5        &mkp MB5
+   &mkp RCLK       &mkp MB4        &mkp MB4
                         >;
                         sensor-bindings = <&rot_enc>;
                 };
                 left_hand_layer {
                         display-name = "Left Hand";
                         bindings = <
-   &mkp RCLK   &hmkp_tg MCLK MSC   &mo MSC
-   &mkp MCLK   &trans              &trans
-   &mkp LCLK   &trans              &trans
-                        >;
-                        sensor-bindings = <&rot_enc>;
-                };
-                PCE_layer {
-                        display-name = "Precise";
-                        bindings = <
-   &trans   &trans   &trans
-   &trans   &trans   &trans
-   &trans   &trans   &trans
+   &mkp RCLK       &mkg MCLK MSC   &mo MSC
+   &mkp MCLK       &trans          &trans
+   &mkp LCLK       &trans          &trans
                         >;
                         sensor-bindings = <&rot_enc>;
                 };
                 MSC_layer {
                         display-name = "Scroll";
                         bindings = <
-   &trans   &trans   &trans
-   &trans   &trans   &trans
-   &trans   &trans   &trans
-                        >;
-                        sensor-bindings = <&rot_enc>;
-                };
-                CFG_layer {
-                        display-name = "Precise";
-                        bindings = <
-   &trans   &trans   &trans
-   &trans   &bt BT_SEL 0   &bt BT_SEL 1
-   &trans   &bt BT_SEL 2   &bt BT_CLR
+   &trans          &trans          &trans
+   &trans          &bt BT_SEL 0    &bt BT_SEL 1
+   &trans          &bt BT_SEL 2    &bt BT_CLR
                         >;
                         sensor-bindings = <&rot_enc>;
                 };
