@@ -55,15 +55,11 @@
         mou0_mmv_il {
                 compatible = "zmk,input-listener";
                 device = <&pd0>;
-                input-processors = <&xy_transf (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>
-                                 , <&zip_report_rate_limit 16>
-                                 ;
+                input-processors = <&zip_report_rate_limit 8>;
                 scroll {
                         layers = <MSC>;
                         process-next;
-                        input-processors = <&xy_scaler 1 40>, <&x_scaler 0 1>
-                                         , <&xy_transf (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>
-                                         , <&to_wheel>;
+                        input-processors = <&xy_scaler 1 40>, <&x_scaler 0 1>, <&to_wheel>;
                 };
         };
 
