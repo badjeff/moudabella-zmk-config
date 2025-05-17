@@ -94,5 +94,5 @@
 	};
 };
 
-#include "moudabella_pmw3610.dtsi"
-// #include "moudabella_paw3395.dtsi"
+// #include "moudabella_pmw3610.dtsi"
+#include "moudabella_paw3395.dtsi"
