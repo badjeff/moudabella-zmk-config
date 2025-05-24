@@ -21,8 +21,9 @@
 #include <input/processors/report_rate_limit.dtsi>
 
 #define DEF 0
-#define LHB 1
-#define MSC 2
+#define UNL 1
+#define LHB 2
+#define MSC 3
 
 / {
         xy_transf: xy_transf {
@@ -55,11 +56,22 @@
         mou0_mmv_il {
                 compatible = "zmk,input-listener";
                 device = <&pd0>;
-                input-processors = <&zip_report_rate_limit 8>;
                 scroll {
                         layers = <MSC>;
                         process-next;
-                        input-processors = <&xy_scaler 1 40>, <&x_scaler 0 1>, <&to_wheel>;
+                        input-processors = <&zip_report_rate_limit 15>
+                                         , <&xy_transf (INPUT_TRANSFORM_Y_INVERT)>
+                                         , <&xy_scaler 1 40>
+                                         , <&x_scaler 0 1>
+                                         , <&to_wheel>
+                                         ;
+                };
+                unlimited {
+                        layers = <UNL>;
+                };
+                base {
+                        layers = <DEF LHB>;
+                        input-processors = <&zip_report_rate_limit 15>;
                 };
         };
 
@@ -93,11 +105,17 @@
         //   7       8
         combos {
                 compatible = "zmk,combos";
-                mou_swap {
+                tog_unlimited {
+                        timeout-ms = <120>;
+                        key-positions = <1 2 3>;
+                        bindings = <&tog UNL>;
+                        layers = < DEF UNL LHB MSC >;
+                };
+                mou_btn_swap {
                         timeout-ms = <120>;
                         key-positions = <7 8>;
                         bindings = <&tog LHB>;
-                        layers = < DEF LHB MSC >;
+                        layers = < DEF UNL LHB MSC >;
                 };
         };
 
@@ -109,6 +127,15 @@
    &mkp LCLK       &mo MSC         &mkg MCLK MSC
    &mkp MCLK       &mkp MB5        &mkp MB5
    &mkp RCLK       &mkp MB4        &mkp MB4
+                        >;
+                        sensor-bindings = <&rot_enc>;
+                };
+                unlimited_layer {
+                        display-name = "Unlimited";
+                        bindings = <
+   &trans          &trans          &trans
+   &trans          &trans          &trans
+   &trans          &trans          &trans
                         >;
                         sensor-bindings = <&rot_enc>;
                 };
