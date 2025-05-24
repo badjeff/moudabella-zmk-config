@@ -93,6 +93,3 @@
 		triggers-per-rotation = <12>;
 	};
 };
-
-#include "moudabella_pmw3610.dtsi"
-// #include "moudabella_paw3395.dtsi"

@@ -5,3 +5,4 @@
  */
 
 #include "moudabella.dtsi"
+#include "moudabella_pmw3610.dtsi"
