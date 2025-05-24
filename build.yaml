@@ -14,5 +14,8 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: moudabella
+    shield: moudabella_pmw3610
+    snippet: studio-rpc-usb-uart
+  - board: seeeduino_xiao_ble
+    shield: moudabella_paw3395
     snippet: studio-rpc-usb-uart
