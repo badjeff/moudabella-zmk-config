@@ -43,11 +43,11 @@
 	  status = "okay";
 		label = "MOU0";
 		reg = <0>;
-		spi-max-frequency = <1500000>;
+		spi-max-frequency = <4000000>;
 
 		// paw3395 driver parameters
 		irq-gpios = <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-		cpi = <1300>;
+		cpi = <600>;
 		evt-type = <INPUT_EV_REL>;
 		x-input-code = <INPUT_REL_X>;
 		y-input-code = <INPUT_REL_Y>;
