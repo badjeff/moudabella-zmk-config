@@ -25,6 +25,10 @@
 #define LHB 2
 #define MSC 3
 
+&zip_report_rate_limit {
+        limit-ble-only;
+};
+
 / {
         xy_transf: xy_transf {
                 compatible = "zmk,input-processor-transform";
@@ -76,11 +80,6 @@
         };
 
         behaviors {
-                mkg: hold_mouse_key_press_tap_toggle {
-                        compatible = "zmk,behavior-hold-tap"; #binding-cells = <2>;
-                        tapping-term-ms = <200>; quick-tap-ms = <200>;
-                        flavor = "tap-preferred"; bindings = <&mkp>, <&tog>;
-                };
                 ec_s: mouse_scroll {
                         compatible = "zmk,behavior-input-two-axis";
                         #binding-cells = <1>;
@@ -124,7 +123,7 @@
                 default_layer {
                         display-name = "Default";
                         bindings = <
-   &mkp LCLK       &mo MSC         &mkg MCLK MSC
+   &mkp LCLK       &mo MSC         &out OUT_TOG
    &mkp MCLK       &mkp MB5        &mkp MB5
    &mkp RCLK       &mkp MB4        &mkp MB4
                         >;
@@ -142,7 +141,7 @@
                 left_hand_layer {
                         display-name = "Left Hand";
                         bindings = <
-   &mkp RCLK       &mkg MCLK MSC   &mo MSC
+   &mkp RCLK       &trans          &trans
    &mkp MCLK       &trans          &trans
    &mkp LCLK       &trans          &trans
                         >;
