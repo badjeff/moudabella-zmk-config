@@ -39,7 +39,7 @@
 	cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
 
 	pd0: pd@0 {
-		compatible = "pixart,pmw3610";
+		compatible = "pixart,pmw3610-alt";
 	  status = "okay";
 		label = "MOU0";
 		reg = <0>;
